@@ -8,12 +8,14 @@ import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutesModule } from './pages.routes';
+import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 
 @NgModule({
   imports: [
     SharedModule,
     PagesRoutesModule,
-    FormsModule
+    FormsModule,
+    // LoginGuardGuard
   ],
   exports: [
     PagesComponent,
@@ -27,6 +29,8 @@ import { PagesRoutesModule } from './pages.routes';
     ProgressComponent,
     Graficas1Component
   ],
-  providers: [],
+  providers: [
+    // LoginGuardGuard
+  ],
 })
 export class PagesModule { }

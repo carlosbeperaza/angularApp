@@ -4,16 +4,18 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
+import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
+    canActivate: [ LoginGuardGuard ],
     children: [
       {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
       {path: 'progress', component: ProgressComponent, data: {title: 'Progress'}},
       {path: 'graficas1', component: Graficas1Component, data: {title: 'Graficas'}},
-      {path: '', redirectTo: 'login', pathMatch: 'full'}
+      {path: '', redirectTo: '/login', pathMatch: 'full'}
     ]
   }
 ];

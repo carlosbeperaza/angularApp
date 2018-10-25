@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert';
 
 import { UserServiceService } from '../services/user/user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { UserServiceService } from '../services/user/user-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public userServiceService: UserServiceService) { }
+  constructor(public userServiceService: UserServiceService, public route: Router) { }
 
   formUser: FormGroup;
 
@@ -25,16 +26,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.userServiceService.login(this.formUser.value.username, this.formUser.value.password)
-    .subscribe(
-      response => {
-      console.log(response);
-      },
-      error => {
-        swal('Oh no!', 'Error', 'warning');
+    this.userServiceService.login(this.formUser.value.username, this.formUser.value.password).toPromise()
+    .then(
+      (response: any) => {
+        localStorage.setItem('X-AUTH-TOKEN', response.token);
+        this.route.navigate(['dashboard']);
       }
-    );
-    // swal('Good job!', 'You clicked the button!', 'success');
+    ).catch((error) => {
+      swal('Oh no!', 'Error', 'warning');
+    });
   }
 
 }
