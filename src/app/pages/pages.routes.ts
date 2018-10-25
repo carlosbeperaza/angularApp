@@ -10,10 +10,10 @@ const routes: Routes = [
     path: '',
     component: PagesComponent,
     children: [
-      {path: 'dashboard', component: DashboardComponent},
-      {path: 'progress', component: ProgressComponent},
-      {path: 'graficas1', component: Graficas1Component},
-      {path: '', redirectTo: '/dashboard', pathMatch: 'full'}
+      {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
+      {path: 'progress', component: ProgressComponent, data: {title: 'Progress'}},
+      {path: 'graficas1', component: Graficas1Component, data: {title: 'Graficas'}},
+      {path: '', redirectTo: 'login', pathMatch: 'full'}
     ]
   }
 ];

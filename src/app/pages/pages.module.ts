@@ -4,13 +4,16 @@ import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { PagesComponent } from './pages.component';
 
+import { FormsModule } from '@angular/forms';
+
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutesModule } from './pages.routes';
 
 @NgModule({
   imports: [
     SharedModule,
-    PagesRoutesModule
+    PagesRoutesModule,
+    FormsModule
   ],
   exports: [
     PagesComponent,
